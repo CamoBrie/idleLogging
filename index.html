@@ -1,13 +1,164 @@
 <html>
 
 <head>
-  <script src="main.js"></script>
-  <script src="logarithmica_numerus_lite.js"></script>
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
 
 <body>
-  <span id="test">
-  </span>
+
+  <!--
+  <div class="resets noselect">
+    <button onclick="firstReset()">Get eCoins</button>
+
+  </div>
+
+-->
+
+  <div class="centered-from-top">
+
+
+    <div class="money noselect">
+
+      <div id="moneyText">
+        you have
+        <span id="money">10</span> coins.
+      </div>
+    </div>
+
+    <div id="tabs">
+      <button class="tab-btn tab-btn-active" onclick="switchTabs(0)">Dimensions</button>
+      <button class="tab-btn" onclick="switchTabs(1)">Inventory</button>
+
+
+    </div>
+
+    <div class="dimensions noselect" id="dimensions">
+      <table>
+        <tr id="dimension1">
+          <td align="left">
+            First Dimension <span id="dim1mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim1">0</span>
+          </td>
+          <td align="right">
+            <button id="dim1cost" class="unavailable-btn" onclick="buyDimension(0)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension2">
+          <td align="left">
+            Second Dimension <span id="dim2mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim2">0</span>
+          </td>
+          <td align="right">
+            <button id="dim2cost" class="unavailable-btn" onclick="buyDimension(1)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension3">
+          <td align="left">
+            Third Dimension <span id="dim3mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim3">0</span>
+          </td>
+          <td align="right">
+            <button id="dim3cost" class="unavailable-btn" onclick="buyDimension(2)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension4">
+          <td align="left">
+            Fourth Dimension <span id="dim4mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim4">0</span>
+          </td>
+          <td align="right">
+            <button id="dim4cost" class="unavailable-btn" onclick="buyDimension(3)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension5">
+          <td align="left">
+            Fifth Dimension <span id="dim5mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim5">0</span>
+          </td>
+          <td align="right">
+            <button id="dim5cost" class="unavailable-btn" onclick="buyDimension(4)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension6">
+          <td align="left">
+            Sixth Dimension <span id="dim6mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim6">0</span>
+          </td>
+          <td align="right">
+            <button id="dim6cost" class="unavailable-btn" onclick="buyDimension(5)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension7">
+          <td align="left">
+            Seventh Dimension <span id="dim7mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim7">0</span>
+          </td>
+          <td align="right">
+            <button id="dim7cost" class="unavailable-btn" onclick="buyDimension(6)">10</button>
+          </td>
+        </tr>
+        <tr id="dimension8">
+          <td align="left">
+            Eight Dimension <span id="dim8mult">1</span>x
+          </td>
+          <td align="left">
+            <span id="dim8">0</span>
+          </td>
+          <td align="right">
+            <button id="dim8cost" class="unavailable-btn" onclick="buyDimension(7)">10</button>
+          </td>
+        </tr>
+
+
+      </table>
+
+    </div>
+
+    <div id="inventory" class="centered-from-left">
+
+      <div id="getItem">
+        p
+      </div>
+
+      <div id="inventory-table">
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <script src="javascript/decimal/logarithmica_numerus_lite.js"></script> -->
+  <!-- <script src="javascript/decimal/break_eternity.js"></script> -->
+  <script src="javascript/decimal/confractus_numerus.js"></script>
+
+  <!-- Scripts for the game -->
+  <script src="javascript/core/general/generic_functions.js"></script>
+  <script src="javascript/core/general/normal_dimensions.js"></script>
+
+  <script src="javascript/core/segments/inventory/inventory.js"></script>
+
+  <script src="javascript/core/player.js"></script>
+  <script src="javascript/core/main.js"></script>
+
+
+
 </body>
 
 </html>
