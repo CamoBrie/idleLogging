@@ -38,13 +38,17 @@ class Player {
 		this.money = this.money.plus(new Decimal(value));
 	}
 
+	removeMoney(value) {
+		this.money = this.money.sub(new Decimal(value));
+	}
+
 	//display the money
 	showMoney() {
-		if (this.money.compareTo(this.logarithmThreshold) == 1) {
-			return fixString(this.prefix + Decimal.log10(this.money).toFixed(2));
-		} else {
-			return fixString(this.money.toFixed(1));
-		}
+		return changeToThreshold(this.money);
 
+	}
+
+	enoughMoney(value) {
+		return this.money.compareTo(value) >= 0;
 	}
 }

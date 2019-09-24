@@ -119,6 +119,18 @@ Inventory
 
 }
 
+#getItem button {
+  margin-top: 10px;
+  width: 20%;
+  background-color: #000;
+  color: #88E5A5;
+  border: 1px solid #88E5A5;
+}
+
+#itemPrice {
+  font-size: 14px;
+}
+
 
 /*
 

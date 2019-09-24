@@ -29,6 +29,14 @@ var fixString = function(s) {
 
 }
 
+var changeToThreshold = function(value, rounding = 0, rounding2 = 0) {
+	if (value.compareTo(player.logarithmThreshold) == 1) {
+		return fixString(player.prefix + Decimal.log10(value).toFixed(rounding));
+	} else {
+		return fixString(value.toFixed(rounding2));
+	}
+}
+
 var hideDimensions = function() {
 	for (let i = 0; i < 8; i++) {
 		document.getElementById("dimension" + (i + 1)).style.display = "table-row";
@@ -38,5 +46,15 @@ var hideDimensions = function() {
 		//show/hide the dimensions not unlocked yet
 		document.getElementById("dimension" + (9 - i)).style.display = "none";
 
+	}
+}
+
+//draw an item from the pool
+var drawItemFromResult = function(currentLootTable, result) {
+	for (let i = 0; i < currentLootTable.items.length; i++) {
+		result -= currentLootTable.items[i].rarity;
+		if (result < 0) {
+			return i;
+		}
 	}
 }

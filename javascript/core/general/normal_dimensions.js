@@ -35,37 +35,25 @@ var getDimensionPerSec = function(t) {
 }
 
 //get the multiplier for the dimensions
-var getMultiplier = function(i) {
-	if (Decimal.compareTo(player.dimensions[i].multiplier, player.logarithmThreshold) == 1) {
-		return fixString(player.prefix + Decimal.log10(player.dimensions[i].multiplier).toFixed(2));
-	} else {
-		return fixString(player.dimensions[i].multiplier.toFixed(0));
-	}
-
+var getMultiplier = function(dimension) {
+	return changeToThreshold(player.dimensions[dimension].multiplier, 2);
 }
 
 
 //show the dimension amount amount
 var showDimensions = function(dimension) {
-	if (Decimal.compareTo(player.dimensions[dimension].amount, player.logarithmThreshold) == 1) {
-		return fixString(player.prefix + Decimal.log10(player.dimensions[dimension].amount).toFixed(2));
-	} else {
-		return fixString(player.dimensions[dimension].amount.toFixed(0));
-	}
+	return changeToThreshold(player.dimensions[dimension].amount, 2);
 }
 
 //show dimension cost
 var showDimensionCost = function(dimension) {
-	if (Decimal.compareTo(player.dimensions[dimension].cost, player.logarithmThreshold) == 1) {
-		return fixString(player.prefix + Decimal.log10(player.dimensions[dimension].cost).toFixed(0));
-	} else {
-		return fixString(player.dimensions[dimension].cost.toFixed(0));
-	}
+	return changeToThreshold(player.dimensions[dimension].cost, 2);
+
 }
 
 //buy dimensions
 var buyDimension = function(i) {
-	if (hasEnoughMoney(i)) {
+	if (hasEnoughMoneyToBuyDim(i)) {
 		player.money = player.money.subtract(player.dimensions[i].cost);
 		player.dimensions[i].amount = player.dimensions[i].amount.add(1);
 		player.dimensions[i].amountBought = player.dimensions[i].amountBought.add(1);
@@ -75,6 +63,6 @@ var buyDimension = function(i) {
 }
 
 //has enough money to buy
-var hasEnoughMoney = function(dimension) {
+var hasEnoughMoneyToBuyDim = function(dimension) {
 	return player.money.compareTo(player.dimensions[dimension].cost) >= 0;
 }

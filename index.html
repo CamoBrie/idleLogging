@@ -10,11 +10,11 @@
 
   <!--
   <div class="resets noselect">
-    <button onclick="firstReset()">Get eCoins</button>
+    <button onclick="firstReset()">yeet!</button>
 
   </div>
-
 -->
+
 
   <div class="centered-from-top">
 
@@ -133,7 +133,7 @@
     <div id="inventory" class="centered-from-left">
 
       <div id="getItem">
-        p
+        <button onclick="player.inventory.drawItem(0)" class="centered-from-left noselect">Get item <br /><span id="ItemPrice">100</span></button>
       </div>
 
       <div id="inventory-table">
@@ -149,6 +149,13 @@
   <script src="javascript/decimal/confractus_numerus.js"></script>
 
   <!-- Scripts for the game -->
+
+  <script src="javascript/core/segments/inventory/item.js"></script>
+
+
+  <script src="javascript/core/segments/loot_tables.js"></script>
+
+
   <script src="javascript/core/general/generic_functions.js"></script>
   <script src="javascript/core/general/normal_dimensions.js"></script>
 

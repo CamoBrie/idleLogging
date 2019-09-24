@@ -15,17 +15,25 @@ class Inventory {
 		this.items.splice(getIndex(key), 1);
 	}
 
+	//clears all the items
+	clearItems() {
+		this.items.length = 0;
+	}
+
 	//returns the item
 	getItem(key) {
-		return this.items[getIndex(key)];
+		return this.items[this.getIndex(key)];
 	}
 
 
 	//get index of item
 	getIndex(key) {
-		this.items.findIndex(function(element) {
-			return element.key == key;
-		});
+		for (let i = 0; i < this.items.length; i++) {
+			if (this.items[i].key == key) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	//returns table
@@ -37,39 +45,63 @@ class Inventory {
 		for (let i = 0; i < this.items.length; i++) {
 			inventoryHook.append(this.items[i].display());
 		}
-
 	}
 
-}
-
-//a single item
-class Item {
-	constructor(name, amount, image, key) {
-		this.name = name;
-		this.amount = amount;
-		this.image = image;
-		this.key = key;
+	updatePrice(currentPrice) {
+		document.getElementById("ItemPrice").innerHTML = currentPrice;
 	}
 
-	display() {
-		//create outer div
-		let itemHook = document.createElement("div");
-		itemHook.className = "inventory-item";
+	itemInInventory(key) {
+		if (this.getIndex(key) != -1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-		//create image
-		let image = document.createElement("img");
+	drawItem(lootTable) {
+		//set current lootTable
+		let tableIndex = lootTable;
+		let clt = loot_tables[tableIndex];
 
-		image.src = "images/inventory/" + this.image + ".png";
-		image.style.width = "128px";
-		image.style.height = "128px";
+		//check if has enough money
+		if (player.enoughMoney(clt.currentPrice)) {
 
-		image.addEventListener("click", function() {
-			alert(image.src);
-		});
+			player.removeMoney(clt.currentPrice);
 
-		itemHook.append(image);
+			loot_tables[tableIndex].currentPrice = clt.currentPrice.mul(clt.valueIncrease);
 
-		return itemHook;
+			//calculate the total drawable number
+			let totalDraw = 0;
+			for (let i = 0; i < clt.items.length; i++) {
+				totalDraw += clt.items[i].rarity;
+			}
 
+			//pick item from list
+			let result = Math.floor(Math.random() * totalDraw);
+			let itemGot = drawItemFromResult(clt, result);
+
+			//set current key
+			let currentKey = clt.items[itemGot].item.key;
+
+
+			//does already have item?
+			if (this.itemInInventory(currentKey)) {
+
+				//see if has reached max of item
+				if (this.getItem(currentKey).amount < clt.items[itemGot].maxCount) {
+					this.getItem(currentKey).addCount(1);
+
+				} else {
+					console.log("already got the max count of the item");
+				}
+			} else {
+				//add the item to the inventory
+				this.addItem(clt.items[itemGot].item);
+			}
+
+			this.updatePrice(changeToThreshold(loot_tables[tableIndex].currentPrice));
+			this.displayItems();
+		}
 	}
 }

@@ -31,7 +31,7 @@ var update = function() {
 		document.getElementById("dim" + (i + 1) + "mult").innerHTML = getMultiplier(i);
 
 		//change the button's color if enough money
-		if (hasEnoughMoney(i)) {
+		if (hasEnoughMoneyToBuyDim(i)) {
 			document.getElementById("dim" + (i + 1) + "cost").classList.remove("unavailable-btn");
 			document.getElementById("dim" + (i + 1) + "cost").classList.add("available-btn");
 		} else {
