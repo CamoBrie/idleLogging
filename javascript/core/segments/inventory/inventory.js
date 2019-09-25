@@ -91,17 +91,31 @@ class Inventory {
 				//see if has reached max of item
 				if (this.getItem(currentKey).amount < clt.items[itemGot].maxCount) {
 					this.getItem(currentKey).addCount(1);
-
+					this.specialItemCheck(currentKey);
 				} else {
+					//max amount of the item
 					console.log("already got the max count of the item");
 				}
 			} else {
 				//add the item to the inventory
 				this.addItem(clt.items[itemGot].item);
+				this.specialItemCheck(currentKey);
 			}
+
 
 			this.updatePrice(changeToThreshold(loot_tables[tableIndex].currentPrice));
 			this.displayItems();
+
+
+		}
+	}
+
+	//checks for special items
+	specialItemCheck(currentKey) {
+
+		if (currentKey == "exndim") {
+			player.dimensionsLength += 1;
+			hideDimensions();
 		}
 	}
 }

@@ -11,8 +11,11 @@ var tick = function() {
 		}
 	}
 
-	let total = Decimal.multiply(player.dimensions[0].amount, player.tickTiming / 1000);
-	total = Decimal.multiply(total, player.dimensions[0].multiplier);
+	let total = Decimal.multiply(player.dimensions[0].amount, getMultiplier(0));
+	player.moneyPS = new Decimal(total);
+	total = Decimal.multiply(total, player.tickTiming / 1000);
+
+
 	player.addMoney(total);
 
 }
@@ -20,6 +23,7 @@ var tick = function() {
 var update = function() {
 	//update the money
 	document.getElementById("money").innerHTML = player.showMoney();
+	document.getElementById("moneyPerSec").innerHTML = changeToThreshold(player.moneyPS, 2);
 
 
 

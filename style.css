@@ -94,6 +94,7 @@ Inventory
 
 #inventory {
   width: 80%;
+  position: relative;
 
 
 }
@@ -105,18 +106,23 @@ Inventory
   justify-content: center;
   align-items: center;
   align-content: center;
-
-  margin: 5%;
-
+  position: relative;
+  margin: -5px -5px;
 
 }
 
-#inventory-item {
-  position: relative;
+.inventory-item {
+
   width: 128px;
   height: 128px;
-  margin: 10px;
+  margin: 5px 5px;
 
+}
+
+#getItem {
+  position: relative;
+  width: 100%;
+  height: 10%;
 }
 
 #getItem button {
@@ -156,7 +162,7 @@ Dimensions
   width: 100%;
 }
 
-.dimensions button {
+.dimensions table button {
   min-width: 30%;
 }
 
@@ -166,6 +172,19 @@ Dimensions
 money
 
 */
+
+#buyMax {
+  margin: 4px;
+  position: relative;
+  width: 10%;
+  height: auto;
+  min-width: 0px;
+  color: black;
+  background-color: #455A64;
+  border: 1px solid #43A047;
+
+  transform: scale(0.8);
+}
 
 .money {
   /* centering */
@@ -193,6 +212,13 @@ money
   /* for bigger impact */
   font-size: 40px;
   color: White;
+}
+
+.money #moneyPerSec {
+    /* for bigger impact */
+    font-size: 24px;
+    color: white;
+
 }
 
 
@@ -234,4 +260,71 @@ general classes
   transform: translate(-50%, 0%);
 
 
+}
+
+
+/*
+
+TOOLTIPS
+
+
+*/
+
+[tooltip] {
+    position: relative;
+    z-index: 2;
+}
+
+[tooltip]:before,
+[tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+[tooltip]:before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 5%, 0.9);
+    color: #fff;
+    content: attr(tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    transition-duration: .5s;
+}
+
+[tooltip]:after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 5%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+    transition-duration: .5s;
+}
+
+[tooltip]:hover:before,
+[tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
 }

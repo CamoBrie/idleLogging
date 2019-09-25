@@ -11,6 +11,7 @@ class Item {
 		//create outer div
 		let itemHook = document.createElement("div");
 		itemHook.className = "inventory-item";
+		itemHook.setAttribute("tooltip", this.name + " (" + this.amount + ")");
 
 		//create image
 		let image = document.createElement("img");
@@ -19,9 +20,13 @@ class Item {
 		image.style.width = "128px";
 		image.style.height = "128px";
 
+		/* Onclick event
+		
 		image.addEventListener("click", function() {
 			alert(image.src);
 		});
+
+		*/
 
 		itemHook.append(image);
 

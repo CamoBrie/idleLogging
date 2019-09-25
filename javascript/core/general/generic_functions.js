@@ -42,7 +42,7 @@ var hideDimensions = function() {
 		document.getElementById("dimension" + (i + 1)).style.display = "table-row";
 	}
 
-	for (let i = 8 - player.dimensions.length; i > 0; i--) {
+	for (let i = 8 - player.dimensionsLength; i > 0; i--) {
 		//show/hide the dimensions not unlocked yet
 		document.getElementById("dimension" + (9 - i)).style.display = "none";
 

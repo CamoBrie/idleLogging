@@ -2,16 +2,18 @@ class Player {
 	constructor(value) {
 		//set variable values
 		this.money = new Decimal(value);
+		this.moneyPS = new Decimal(value);
 
 		//set the dimensions
 		this.dimensions = [];
 		this.dimensionsLength = 3;
 
-		for (let i = 0; i < this.dimensionsLength; i++) {
+		for (let i = 0; i < 8; i++) {
 			this.dimensions[i] = {};
 			this.dimensions[i].amount = new Decimal("0");
 			this.dimensions[i].amountBought = new Decimal("0");
-			this.dimensions[i].cost = new Decimal("10e" + (i * 3) * Math.log2(i + 1) * 2);
+			this.dimensions[i].cost = new Decimal("10e" + (i * 3));
+			this.dimensions[i].costIncrease = getCostIncrease(i);
 			this.dimensions[i].multiplier = new Decimal("1");
 		}
 
@@ -44,7 +46,7 @@ class Player {
 
 	//display the money
 	showMoney() {
-		return changeToThreshold(this.money);
+		return changeToThreshold(this.money, 2, 0);
 
 	}
 
