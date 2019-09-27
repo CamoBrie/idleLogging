@@ -28,8 +28,7 @@ var getDimensionPerSec = function(t) {
 			return 0;
 		}
 
-		return Decimal.multiply(player.dimensions[t + 1].amount, getMultiplier(t));
-
+		return Decimal.multiply(Decimal.multiply(player.dimensions[t + 1].amount, getMultiplier(t)), player.tickTiming);
 	}
 	return 0;
 }
@@ -98,7 +97,6 @@ var getCostIncrease = function(i) {
 }
 
 var buyMaxNorDim = function() {
-	console.log(player.dimensionsLength);
 	for (let i = player.dimensionsLength - 1; i >= 0; i--) {
 		while (hasEnoughMoneyToBuyDim(i)) {
 			buyDimension(i);
